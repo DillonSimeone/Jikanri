@@ -55,7 +55,7 @@ further rules can be added by editing the `eslintrc.*` files.
 ## Contributing
 
 If you wish to contibute at this early stage please don't hesitate to submit a pull request or contact me via email or discord [Shiroraven#4302] I'll be happy to discuss your ideas with you.
-please also read [CONTRIBUTING.md](https://github.com/Shiroraven/Jikanri/blob/master/CONTRIBUTING.md) for details on the code of conduct, and the process for submitting pull requests.
+please also read `CONTRIBUTING.md` for details on the code of conduct, and the process for submitting pull requests.
 
 ## Authors
 
@@ -65,5 +65,5 @@ See also the list of [contributors](https://github.com/your/project/contributors
 
 ## License
 
-This project is licensed under the GPLv3 License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the GPLv3 License - see the `LICENSE` file for details
 
