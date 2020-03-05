@@ -12,21 +12,21 @@ start by cloning this repository to your local machine:
 
 *via https:*
 ```
-git clone https://github.com/Shiroraven/Jikanri.git ./jikanri
+$ git clone https://github.com/Shiroraven/Jikanri.git ./jikanri
 ```
 *via SSH:*
 ```
-git clone git@github.com:Shiroraven/Jikanri.git ./jikanri
+$ git clone git@github.com:Shiroraven/Jikanri.git ./jikanri
 ```
 next install the required dependencies using your favorite package manager:
 
 **NPM:**
 ```
-npm -i
+$ npm -i
 ```
 **Yarn:**
 ```
-yarn -i
+$ yarn -i
 ```
 
 ## Running the tests
@@ -34,22 +34,21 @@ yarn -i
 automated testing can be performed as follows:
 **Parallel Testing**
 ```
-jest [other-options-or-params]
+$ jest [other-options-or-params]
 ```
 *or*
 **Sequential Testing**
 ```
-jest [other-options-or-params] --runInBand
+$ jest [other-options-or-params] --runInBand
 ```
 ### And coding style tests
 
-By default this project enforces the [javascript standard style](https://standardjs.com) using [ESLint](https://eslint.org/).
-further rules can be added by editing the `eslintrc.*` files.
+By default this project enforces the [javascript standard style](https://standardjs.com)
+run `$ npx standard` to check your style and `$ npx standard --fix` to fix all autofixable problems.
 
 ## Built With
 
 * [Svelte](https://svelte.dev/) - Web framework
-* [Electron](https://electronjs.org) - Used for the desktop port
 * [Jest](https://jestjs.io) - Testing framework
 
 ## Contributing
