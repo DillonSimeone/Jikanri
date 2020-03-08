@@ -49,6 +49,7 @@ run `$ npx standard` to check your style and `$ npx standard --fix` to fix all a
 ## Built With
 
 * [Svelte](https://svelte.dev/) - Web framework
+* [Rollup](https://rollupjs.org) - Package / Module bundler
 * [Jest](https://jestjs.io) - Testing framework
 
 ## Contributing

@@ -1,4 +1,13 @@
 <script>
-
+  import { Router, Link, Route } from 'svelte-routing'
+  import Setup from './pages/Setup.svelte'
+  export let url = 'kdkdk'
 </script>
-<p>use this for now</p>
+
+<Router {url}>
+  <div>
+    <Route path="/">
+      <Setup />
+    </Route>
+  </div>
+</Router>
