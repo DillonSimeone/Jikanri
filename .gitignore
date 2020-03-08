@@ -6,10 +6,10 @@ yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
 
+
 # Diagnostic reports (https://nodejs.org/api/report.html)
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
-
-# Runtime data
+# Runtime datagi
 pids
 *.pid
 *.seed
@@ -102,3 +102,6 @@ dist
 
 # TernJS port file
 .tern-port
+
+# Bundler files
+public/build/
