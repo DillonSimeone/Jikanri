@@ -60,11 +60,10 @@ run `$ npx standard` to check your style and `$ npx standard --fix` to fix all a
 ## Built With
 
 - [Svelte](https://svelte.dev/) - Web framework
-- [Firebase](https://firebase.google.com) - Cloud based back-end and database infrastructure
 - [Rollup](https://rollupjs.org) - Package / Module bundler
 - [Jest](https://jestjs.io) - Testing framework
 
-## Contributing
+## Contributing"
 
 If you wish to contibute at this early stage please don't hesitate to submit a pull request or contact me via email or discord [Shiroraven#4302] I'll be happy to discuss your ideas with you.
 please also read `CONTRIBUTING.md` for details on the code of conduct, and the process for submitting pull requests.

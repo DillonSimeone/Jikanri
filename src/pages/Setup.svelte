@@ -1,7 +1,33 @@
 <script>
   import Layout from "../components/Layout.svelte";
+  import "../firebase.js";
+  import firebase from "@firebase/app";
+  import "@firebase/auth";
   let step = 1;
   export let language = "en";
+  let user = "";
+  let provider = new firebase.auth.GoogleAuthProvider();
+  const signin = () => {
+    firebase
+      .auth()
+      .signInWithPopup(provider)
+      .then(result => {
+        console.log(firebase.auth().currentUser);
+        user = firebase.auth().currentUser.displayName;
+      });
+  };
+  const signout = () => {
+    firebase
+      .auth()
+      .signOut()
+      .then(function() {
+        console.log('signed out successfully')
+        user = ""
+      })
+      .catch(function(error) {
+        console.error(error);
+      });
+  };
 </script>
 
 <style>
@@ -15,7 +41,6 @@
     height: 100%;
     width: 25vw;
     justify-content: center;
-    min-width: 360px;
     background: #256eff;
     padding: 48px;
     height: 100vh;
@@ -42,44 +67,55 @@
     padding: 0 96px;
     align-self: flex-end;
   }
-  button.help{
-    font-style: italic;
-  }
   label.lang {
-    color: #ccc;
+    color: #1545a5;
     font-weight: 600;
     font-size: 11pt;
     margin: 0 4px;
   }
   label.lang.active {
-    color: #256eff;
+    color: #fff;
   }
   #lang_english,
   #lang_japanese {
     display: none;
   }
-  section.language-and-help {
+  section.language-select {
     display: flex;
     align-items: center;
-    left: calc(25% + 96px);
+    left: 48px;
     top: 48px;
-    width: calc(75% - 2*96px);
-    justify-content: space-between;
     position: absolute;
+  }
+  section.oauth-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+  }
+  section.oauth-buttons button {
+    display: flex;
+    align-items: center;
+    margin: 16px 0;
+  }
+  section.oauth-buttons button img {
+    width: 16px;
+    filter: grayscale(1) brightness(100);
+    margin: 0 8px;
   }
 </style>
 
 <main class="page-wrapper">
   <aside>
     {#if step == 1}
-      <img src="svg/logo.svg" alt="" class="logo step-one" />
-      <section class="step-one">
+      <section class={step == 1 ? 'step-one sidebar' : 'sidebar'}>
         <h1>Welcome to Jikanri. Let's start by setting things up.</h1>
         <p>Time to get some work done! Let's start with some configuration.</p>
       </section>
     {/if}
   </aside>
-  <section class="language-and-help">
+  <section class="language-select">
     <span>
       <label
         for="lang_english"
@@ -96,16 +132,25 @@
       </label>
       <input type="radio" name="language" id="lang_japanese" />
     </span>
-    <button class="btn-secondary-borderless help">Do you need help?</button>
   </section>
-  <section class="paginator">
-    {#if step > 1}
+  {#if step > 1}
+    <section class="paginator">
       <button class="btn-secondary-borderless" on:click={() => step--}>
         Previous
       </button>
-    {:else}
-      <span />
+
+      <button class="btn-primary" on:click={() => step++}>Next</button>
+    </section>
+  {/if}
+  <section class="oauth-buttons">
+    <button class="btn-primary" on:click={signin}>
+      <img src="/google.svg" alt="" />
+      Sign in using Google
+    </button>
+    signed in as
+    <h1>{user}</h1>
+    {#if user}
+      <button on:click={signout}>sign out</button>
     {/if}
-    <button class="btn-primary" on:click={() => step++}>Next</button>
   </section>
 </main>
