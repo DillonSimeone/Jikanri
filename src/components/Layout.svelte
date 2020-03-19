@@ -1,20 +1,20 @@
 <style>
-    main.layout-wrapper {
-        width: 100vw;
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    .grid-wrapper {
-        display: grid;
-        max-width: 90%;
-        grid-template-columns: repeat(6, 1fr);
-    }
+  .page-wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100vw;
+    min-height: 100vh;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+    max-width: 1600px;
+    width: 90%;
+  }
 </style>
 
-<main class="layout-wrapper">
-    <div class="grid-wrapper">
-        <slot>this page is currently empty.</slot>
-    </div>
-</main>
+<div class="page-wrapper">
+  <div class="grid">
+    <slot>this page is currently empty</slot>
+  </div>
+</div>

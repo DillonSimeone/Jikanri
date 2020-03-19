@@ -3,6 +3,8 @@
 *::before,
 *::after {
   box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+  color: #666;
 }
 
 /* Remove default padding */
@@ -66,7 +68,24 @@ textarea,
 select {
   font: inherit;
 }
+button:focus {
+  outline: none;
+}
 
+button.btn-primary {
+  color: #fff;
+  border-style: none;
+  border-radius: 8px;
+  padding: 10px 32px;
+  background: #256eff;
+  font-weight: 600;
+}
+button.btn-secondary-borderless {
+  border-style: none;
+  font-weight: 600;
+  background: none;
+  padding: 10px 32px;
+}
 /* Remove all animations and transitions for people that prefer not to see them */
 @media (prefers-reduced-motion: reduce) {
   * {
