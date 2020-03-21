@@ -107,3 +107,6 @@ dist
 build/
 package-lock.json
 yarn.lock
+
+# files containing sensitive data
+src/firebase.js

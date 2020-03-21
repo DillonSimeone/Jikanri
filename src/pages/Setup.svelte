@@ -1,38 +1,40 @@
 <script>
-  import Layout from "../components/Layout.svelte";
-  import firebase from "@firebase/app";
-  import "../firebase.js"
-  import "@firebase/auth";
-  export let language = "en";
+import Layout from '../components/Layout.svelte'
+import firebase from '@firebase/app'
+import '../firebase.js'
+import '@firebase/auth'
+import { Link } from 'svelte-routing'
+export const language = 'en'
 
-  let step = 1;
-  let user = "";
-  
-  let provider = new firebase.auth.GoogleAuthProvider();
-  provider.addScope("https://www.googleapis.com/auth/calendar"); //Calendar Permissions
+const step = 1
+let user = ''
 
-  const signin = () => {
-    firebase
-      .auth()
-      .signInWithPopup(provider)
-      .then(result => {
-        console.log(firebase.auth().currentUser);
-        user = firebase.auth().currentUser;
-      });
-  };
+const provider = new firebase.auth.GoogleAuthProvider()
+provider.addScope('https://www.googleapis.com/auth/calendar') // Calendar Permissions
 
-  const signout = () => {
-    firebase
-      .auth()
-      .signOut()
-      .then(function() {
-        console.log("signed out successfully");
-        user = "";
-      })
-      .catch(function(error) {
-        console.error(error);
-      });
-  };
+const signin = () => {
+  firebase
+    .auth()
+    .signInWithPopup(provider)
+    .then(result => {
+      console.log(firebase.auth().currentUser)
+      user = firebase.auth().currentUser
+    })
+}
+
+const signout = () => {
+  firebase
+    .auth()
+    .signOut()
+    .then(function () {
+      console.log('signed out successfully')
+      user = ''
+    })
+    .catch(function (error) {
+      console.error(error)
+    })
+}
+
 </script>
 
 <style>
@@ -110,27 +112,6 @@
     margin: 0 8px;
   }
 </style>
-
-<!-- 
-  Tried doing it the vanilla-ish way without any success.  This bit below loads up the google api in the header of the page Svelte outputs... Oddly, for some reason, I can't attach any script onload event watchers to the script, or even use anything from the google api!
-  
-  Seems to load up just fine when putting the link in the url bar. Hmm. Maybe it needs a ?=apikeysomething in the url to work.
-
-  Tried following this guide after my first attempt failed: https://medium.com/google-cloud/using-google-apis-with-firebase-auth-and-firebase-ui-on-the-web-46e6189cf571
-
-  It didn't work! Kept getting errors about gapi being undefined. Gapi is an object from the api.js. Weird that it's not accessiable by any javascripts in this page.
-
-  Should test by making a quick vanilla HTML/JS/CSS page, to see if the fault is within my approach with that, or Svelte is just doing something weird. 
-  -->
-
-<!-- 
-  
-  <svelte:head>
-  <script async defer src="https://apis.google.com/js/api.js">
-  </script>
-</svelte:head> 
-
--->
 <main class="page-wrapper">
   <aside>
     {#if step == 1}
@@ -145,14 +126,14 @@
       <label
         for="lang_english"
         class={language == 'en' ? 'lang active' : 'lang'}
-        on:click={() => (language = 'en')}>
+        on:click={() => language = 'en'}>
         EN
       </label>
       <input type="radio" name="language" id="lang_english" />
       <label
         for="lang_japanese"
         class={language == 'jp' ? 'lang active' : 'lang'}
-        on:click={() => (language = 'jp')}>
+        on:click={() => language = 'jp'}>
         JP
       </label>
       <input type="radio" name="language" id="lang_japanese" />
@@ -180,4 +161,5 @@
       <button on:click={signout}>sign out</button>
     {/if}
   </section>
+  <Link to="/test">Google API Test</Link>
 </main>
