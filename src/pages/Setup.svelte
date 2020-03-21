@@ -12,14 +12,16 @@ let user = ''
 const provider = new firebase.auth.GoogleAuthProvider()
 provider.addScope('https://www.googleapis.com/auth/calendar') // Calendar Permissions
 
+  firebase.auth().onAuthStateChanged(function(u) {
+  if (u) {
+    user = u
+  }
+  else {user = ''}
+});
 const signin = () => {
   firebase
     .auth()
     .signInWithPopup(provider)
-    .then(result => {
-      console.log(firebase.auth().currentUser)
-      user = firebase.auth().currentUser
-    })
 }
 
 const signout = () => {
@@ -28,7 +30,6 @@ const signout = () => {
     .signOut()
     .then(function () {
       console.log('signed out successfully')
-      user = ''
     })
     .catch(function (error) {
       console.error(error)
@@ -155,11 +156,11 @@ const signout = () => {
         Sign in using Google
       </button>
     {/if}
-    {#if user.displayName}
+    {#if user}
       Signed in as
       <h1>{user.displayName}</h1>
       <button on:click={signout}>sign out</button>
+      <Link to="/test">Google API Test</Link>
     {/if}
   </section>
-  <Link to="/test">Google API Test</Link>
 </main>
