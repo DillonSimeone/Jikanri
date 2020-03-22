@@ -1,33 +1,31 @@
 <script>
-  import Layout from "../components/Layout.svelte";
-  import firebase from "@firebase/app";
-  import "../firebase.js";
-  import "@firebase/auth";
-  import { Link } from "svelte-routing";
-  export const language = "en";
+  import Layout from '../components/Layout.svelte';
+  import firebase from '@firebase/app'
+  import '../firebase.js';
+  import '@firebase/auth';
+  import { Link } from 'svelte-routing'
+  export const language = 'en'
 
-  const step = 1;
-  let user = "";
-  let provider = ""; // Use this to see which account is signed in.
+  const step = 1
+  let user = ''
+  let provider = '' // Use this to see which account is signed in.
 
-  const googleProvider = new firebase.auth.GoogleAuthProvider();
-  googleProvider.addScope("https://www.googleapis.com/auth/calendar"); // Calendar Permissions
+  const googleProvider = new firebase.auth.GoogleAuthProvider()
+  googleProvider.addScope("https://www.googleapis.com/auth/calendar") // Calendar Permissions
 
-  const githubProvider = new firebase.auth.GithubAuthProvider();
-  githubProvider.addScope("repo");
+  const githubProvider = new firebase.auth.GithubAuthProvider()
+  githubProvider.addScope("repo")
 
   firebase.auth().onAuthStateChanged(function(u) {
     if (u) {
-      user = u;
-      provider = u.providerData[0].providerId;
-      console.log(u); // Debugging
-      console.log(
-        "Mmm.... I think this account is a " + provider + " account!"
-      ); // Debugging
+      user = u
+      provider = u.providerData[0].providerId
+      // console.log(u) // Debugging
+      // console.log("Mmm.... I think this account is a " + provider + " account!")  // Debugging
     } else {
-      user = "";
+      user = ''
     }
-  });
+  }) 
 
   const signin = provider => {
     firebase
@@ -35,20 +33,20 @@
       .signInWithPopup(provider)
       .then(result => {
         // console.log(result.user) // firebase.auth().onAuthStateChanged(function(u) {... Gets the same stuff.
-      });
-  };
+      }) 
+  } 
 
   const signout = () => {
     firebase
       .auth()
       .signOut()
       .then(function() {
-        console.log("signed out successfully");
+        // console.log("signed out successfully")
       })
       .catch(function(error) {
-        console.error(error);
-      });
-  };
+        console.error(error)
+      }) 
+  } 
 </script>
 
 <style>
@@ -141,14 +139,14 @@
       <label
         for="lang_english"
         class={language == 'en' ? 'lang active' : 'lang'}
-        on:click={() => (language = 'en')}>
+        on:click={() => language = 'en'}>
         EN
       </label>
       <input type="radio" name="language" id="lang_english" />
       <label
         for="lang_japanese"
         class={language == 'jp' ? 'lang active' : 'lang'}
-        on:click={() => (language = 'jp')}>
+        on:click={() => language = 'jp'}>
         JP
       </label>
       <input type="radio" name="language" id="lang_japanese" />
@@ -168,7 +166,7 @@
       <button
         class="btn-primary"
         on:click={() => {
-          signin(googleProvider);
+          signin(googleProvider)
         }}>
         <img src="/google.svg" alt="" />
         Sign in using Google
@@ -176,7 +174,7 @@
       <button
         class="btn-primary"
         on:click={() => {
-          signin(githubProvider);
+          signin(githubProvider)
         }}>
         <img src="" alt="" />
         Sign in using Github
