@@ -1,19 +1,20 @@
 <script>
-  import Layout from '../components/Layout.svelte';
+  import Layout from '../components/Layout.svelte'
   import firebase from '@firebase/app'
-  import '../firebase.js';
-  import '@firebase/auth';
+  import '../firebase.js'
+  import '@firebase/auth'
   import { Link } from 'svelte-routing'
+  import { providerDeciperer } from './../components/providerDeciperer.svelte'
   export const language = 'en'
 
   const step = 1
   let user = ''
   let provider = '' // Use this to see which account is signed in.
 
-  const googleProvider = new firebase.auth.GoogleAuthProvider()
+  const googleProvider = new firebase.auth.GoogleAuthProvider() // Maybe move this into the signin function? Pass 'google', 'github', etc string to the function to decide which provider to load up. 
   googleProvider.addScope("https://www.googleapis.com/auth/calendar") // Calendar Permissions
 
-  const githubProvider = new firebase.auth.GithubAuthProvider()
+  const githubProvider = new firebase.auth.GithubAuthProvider() // See line 13 comment.
   githubProvider.addScope("repo")
 
   firebase.auth().onAuthStateChanged(function(u) {
@@ -33,6 +34,8 @@
       .signInWithPopup(provider)
       .then(result => {
         // console.log(result.user) // firebase.auth().onAuthStateChanged(function(u) {... Gets the same stuff.
+        // console.log(result)
+        providerDeciperer(result)
       }) 
   } 
 
