@@ -7,7 +7,7 @@
       profilePicture: '',
       accessToken: '',
       refreshToken: ''
-    };
+    }
     // console.log("You've imported me!");
     // console.log("Hmm, the provider is..." + result.additionalUserInfo.providerId);
     switch (result.additionalUserInfo.providerId) {
