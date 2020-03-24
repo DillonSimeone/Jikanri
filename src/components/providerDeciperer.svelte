@@ -1,12 +1,12 @@
 <script context="module">
-  import { auth } from "./../auth";
+  import { auth } from './../auth'
   // Result arg should be from signin in SetUp.svelte!
   export function providerDeciperer(result) {
     let authObject = {
-      username: "",
-      profilePicture: "",
-      accessToken: "",
-      refreshToken: ""
+      username: '',
+      profilePicture: '',
+      accessToken: '',
+      refreshToken: ''
     };
     // console.log("You've imported me!");
     // console.log("Hmm, the provider is..." + result.additionalUserInfo.providerId);

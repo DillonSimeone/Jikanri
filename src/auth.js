@@ -1,8 +1,8 @@
-import { writable } from "svelte/store";
+import { writable } from 'svelte/store'
 
 export const auth = writable({
-  username: "",
-  profilePicture: "",
-  accessToken: "",
-  refreshToken: ""
+  username: '',
+  profilePicture: '',
+  accessToken: '',
+  refreshToken: ''
 })
