@@ -5,8 +5,9 @@
   import '@firebase/auth'
   import { Link } from 'svelte-routing'
   import { providerDeciperer } from './../components/providerDeciperer.svelte'
+  import { auth } from './../auth.js'
   export const language = 'en'
-
+  
   const step = 1
   let user = ''
   let provider = '' // Use this to see which account is signed in.
@@ -36,6 +37,8 @@
         // console.log(result.user) // firebase.auth().onAuthStateChanged(function(u) {... Gets the same stuff.
         // console.log(result)
         providerDeciperer(result)
+        console.log("Auth store data is... ")
+        console.log({$auth})
       }) 
   } 
 
